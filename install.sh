@@ -27,7 +27,7 @@ fi
 
 # Brew installs
 echo "Installing Brew programs"
-brew install --cask alfred
+brew install --cask raycast
 brew install --cask alt-tab
 brew install --cask docker
 brew install --cask firefox
@@ -35,11 +35,12 @@ brew install --cask jetbrains-toolbox
 brew install --cask karabiner-elements
 brew install --cask monitorcontrol
 brew install --cask mullvadvpn
-brew install --cask notion
+brew install --cask obsidian
 brew install --cask rectangle
 brew install --cask spotify
 brew install --cask slack
 brew install --cask visual-studio-code
+brew install --cask linearmouse
 
 brew install htop
 brew install fzf
@@ -48,6 +49,7 @@ brew install rbenv
 brew install tmux
 brew install neovim
 brew install bluesnooze # Stops sleeping mac from connecting to bluetooth devices
+brew install tree-sitter-cli # Needed for nvim treesitter
 
 # Cargo installs
 echo "Installing Cargo programs"
