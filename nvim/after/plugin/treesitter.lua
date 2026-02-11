@@ -1,3 +1,11 @@
+require'nvim-treesitter'.install { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "rust", "ruby", "go", "gotmpl", "bash" }
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { '*' },
+  callback = function() vim.treesitter.start() end,
+})
+
+--[[
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "rust", "ruby", "go", "gotmpl" },
@@ -35,3 +43,4 @@ parser_config.gotmpl = {
   filetype = "gotmpl",
   used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml", "tmpl"}
 }
+--]]
