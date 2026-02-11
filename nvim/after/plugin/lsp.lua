@@ -1,12 +1,11 @@
-local lsp = require("lsp-zero")
+local lsp = vim.lsp
 local fzf = require("fzf-lua")
 
 require('go').setup()
 
-lsp.preset("recommended")
+-- lsp.preset("recommended")
 
-
-lsp.ensure_installed({
+lsp.enable({
 	'ts_ls',
 	'eslint',
 	'lua_ls',
@@ -18,12 +17,15 @@ lsp.ensure_installed({
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
+--[[
 local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<TAB>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i'}),
 	['<S-TAB>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i'}),
 	['<CR>'] = cmp.mapping.confirm({ select = true }),
 })
+--]]
 
+--[[
 lsp.setup_nvim_cmp({
 	mapping = cmp_mappings
 })
@@ -53,5 +55,6 @@ end)
 lsp.set_preferences({
 	sign_icons = { }
 })
+--]]
 
-lsp.setup()
+-- lsp.setup()
