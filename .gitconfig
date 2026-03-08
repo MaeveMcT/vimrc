@@ -1,7 +1,7 @@
 # Some lovely config values from https://blog.gitbutler.com/how-git-core-devs-configure-git/
 [user]
 	name = MaeveMcT
-	email = rmctiernan@protonmail.com
+	email = maeve@mmctiernan.com
 	signingkey = 52612EC5DF8FA5E5
 [alias]
 	lg = log --oneline
