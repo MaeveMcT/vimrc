@@ -1,60 +1,83 @@
-local lsp = vim.lsp
 local fzf = require("fzf-lua")
-
 require('go').setup()
 
--- lsp.preset("recommended")
+-- Gutter space so diagnostics don't cause layout shifts
+vim.opt.signcolumn = 'yes'
 
-lsp.enable({
-	'ts_ls',
-	'eslint',
-	'lua_ls',
-	'rust_analyzer',
-	'clangd',
-	'gopls',
-	'bashls',
+-- Rounded borders on all floating windows (replaces the old vim.lsp.handlers approach)
+vim.o.winborder = 'rounded'
+
+-- Wire up nvim-cmp capabilities to ALL servers globally
+vim.lsp.config('*', {
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
 })
 
+-- Keymaps on attach (replaces lsp.on_attach)
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP keymaps',
+  callback = function(event)
+    local opts = { buffer = event.buf, remap = false }
+
+    -- Navigation
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "K",  vim.lsp.buf.hover, opts)
+
+    -- fzf-lua for references and diagnostics (keeping your existing behaviour)
+    vim.keymap.set("n", "gr", fzf.lsp_references, opts)
+    vim.keymap.set("n", "gl", function()
+      fzf.lsp_workspace_diagnostics({ fzf_opts = { ['--layout'] = 'reverse' } })
+    end, opts)
+
+    -- Diagnostics navigation
+    vim.keymap.set("n", "<c-j>", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "<c-k>", vim.diagnostic.goto_prev, opts)
+
+    -- Actions
+    vim.keymap.set("n", "<leader>ac", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  end,
+})
+
+-- Install servers via mason-lspconfig (replaces lsp.ensure_installed)
+require('mason').setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'ts_ls',
+    'eslint',
+    'lua_ls',
+    'rust_analyzer',
+    'clangd',
+    'gopls',
+    'bashls',
+  },
+  -- This handler auto-calls vim.lsp.enable() for each installed server
+  handlers = {
+    function(server_name)
+      vim.lsp.enable(server_name)
+    end,
+  },
+})
+
+-- nvim-cmp completion setup (unchanged in structure, just detached from lsp-zero)
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
---[[
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	['<TAB>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i'}),
-	['<S-TAB>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i'}),
-	['<CR>'] = cmp.mapping.confirm({ select = true }),
+cmp.setup({
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
+  },
+  snippet = {
+    expand = function(args)
+      vim.snippet.expand(args.body) -- built-in since nvim 0.10, no luasnip needed
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<TAB>']   = cmp.mapping.select_next_item(),
+    ['<S-TAB>'] = cmp.mapping.select_prev_item(),
+    ['<CR>']    = cmp.mapping.confirm({ select = true }),
+  }),
 })
---]]
-
---[[
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings
-})
-
-lsp.on_attach(function(client, bufnr) 
-	local opts = {buffer = bufnr, remap = false}
-
-	--- TODO(reece): 
-		-- nmap <leader>qf  <Plug>(coc-fix-current)
-	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-	vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-	vim.keymap.set("n", "gr", function() fzf.lsp_references() end, opts)
-	vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-	vim.keymap.set("n", "gy", function() vim.lsp.buf.type_definition() end, opts)
-	vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help() end, opts)
-	vim.keymap.set("n", "gl", function() fzf.lsp_workspace_diagnostics({ fzf_opts = {['--layout'] = 'reverse'} }) end, opts)
-
-	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-	vim.keymap.set("n", "<c-j>", function() vim.diagnostic.goto_next() end, opts)
-	vim.keymap.set("n", "<c-k>", function() vim.diagnostic.goto_prev() end, opts)
-	vim.keymap.set("n", "<leader>ac", function() vim.lsp.buf.code_action() end, opts)
-	vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-	--- Example of using a command instead of a function
-	-- vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
-end)
-
-lsp.set_preferences({
-	sign_icons = { }
-})
---]]
-
--- lsp.setup()
