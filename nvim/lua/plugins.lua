@@ -54,7 +54,7 @@ return {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",           
+    branch = "main",
     build = ":TSUpdate",
   },
 
