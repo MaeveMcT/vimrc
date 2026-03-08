@@ -1,6 +1,6 @@
 # Some lovely config values from https://blog.gitbutler.com/how-git-core-devs-configure-git/
 [user]
-	name = RMcTn
+	name = MaeveMcT
 	email = rmctiernan@protonmail.com
 	signingkey = 52612EC5DF8FA5E5
 [alias]
