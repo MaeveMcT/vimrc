@@ -2,7 +2,6 @@
 return {
   -- Editing utilities
   { "Dimercel/todo-vim" },
-  { "ludovicchabant/vim-gutentags" },
   { "machakann/vim-highlightedyank" },
   { "tpope/vim-surround" },
   { "tpope/vim-repeat" },
