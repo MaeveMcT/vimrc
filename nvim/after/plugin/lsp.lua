@@ -62,6 +62,16 @@ require('mason-lspconfig').setup({
   },
 })
 
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      check = {
+        command = "clippy",
+      },
+    },
+  },
+})
+
 -- nvim-cmp completion setup (unchanged in structure, just detached from lsp-zero)
 local cmp = require('cmp')
 cmp.setup({
