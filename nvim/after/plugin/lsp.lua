@@ -53,6 +53,8 @@ require('mason-lspconfig').setup({
     'clangd',
     'gopls',
     'bashls',
+    'ruff',
+    'pyright'
   },
   -- This handler auto-calls vim.lsp.enable() for each installed server
   handlers = {
