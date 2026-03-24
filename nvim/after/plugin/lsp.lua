@@ -72,7 +72,7 @@ vim.lsp.config("rust_analyzer", {
   },
 })
 
--- nvim-cmp completion setup (unchanged in structure, just detached from lsp-zero)
+-- nvim-cmp completion setup
 local cmp = require('cmp')
 cmp.setup({
   sources = {
@@ -82,7 +82,7 @@ cmp.setup({
   },
   snippet = {
     expand = function(args)
-      vim.snippet.expand(args.body) -- built-in since nvim 0.10, no luasnip needed
+      vim.snippet.expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert({
