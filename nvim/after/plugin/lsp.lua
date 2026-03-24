@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "K",  vim.lsp.buf.hover, opts)
 
-    -- fzf-lua for references and diagnostics (keeping your existing behaviour)
+    -- fzf-lua for references and diagnostics
     vim.keymap.set("n", "gr", fzf.lsp_references, opts)
     vim.keymap.set("n", "gl", function()
       fzf.lsp_workspace_diagnostics({ fzf_opts = { ['--layout'] = 'reverse' } })
@@ -37,6 +37,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Actions
     vim.keymap.set("n", "<leader>ac", vim.lsp.buf.code_action, opts)
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  end,
+})
+
+-- Override our file picker hotkey when in the quickfix list. Stops the fzf window popping up when trying to select a quickfix value
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+	  -- Buffer hotkey takes priority over global hotkeys
+	  vim.keymap.set("n", "<CR>", "<CR>", { buffer = true, noremap = true })
   end,
 })
 
