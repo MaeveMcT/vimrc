@@ -102,7 +102,6 @@ vim.g.rustfmt_autosave = 1
 
 -- Tagbar
 vim.g.tagbar_left = 1
-vim.g.gutentags_enabled = 0
 vim.keymap.set('n', '<F3>', ':TagbarToggle<CR>')
 vim.keymap.set('n', '<F2>', ':TagbarOpen fcj<CR>')
 
@@ -112,78 +111,6 @@ vim.opt.background = "dark"
 vim.keymap.set('n', '<F6>', ':TODOToggle<CR>')
 
 vim.keymap.set('n', 'Q', ':q<CR>')
-
--- Fixes coc solargraph ECONNREFUSED
--- =========== COC Config (Deprecated - using LSP now) ===========
--- vim.g.coc_node_args = {'--dns-result-order=ipv4first'}
---
--- nvim coc config
--- From https://github.com/neoclide/coc.nvim#example-vim-configuration
--- Use tab for trigger completion with characters ahead and navigate.
--- NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
--- other plugin before putting this into your config.
--- vim.cmd([[
--- inoremap <silent><expr> <TAB>
---       \ pumvisible() ? "\<C-n>" :
---       \ <SID>check_back_space() ? "\<TAB>" :
---       \ coc#refresh()
--- inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
---
--- function! s:check_back_space() abort
---   let col = col('.') - 1
---   return !col || getline('.')[col - 1]  =~# '\s'
--- endfunction
--- ]])
---
--- -- Use <c-space> to trigger completion.
--- vim.cmd('inoremap <silent><expr> <c-space> coc#refresh()')
---
--- -- GoTo code navigation.
--- vim.keymap.set('n', 'gd', '<Plug>(coc-definition)', { silent = true })
--- vim.keymap.set('n', 'gy', '<Plug>(coc-type-definition)', { silent = true })
--- vim.keymap.set('n', 'gi', '<Plug>(coc-implementation)', { silent = true })
--- vim.keymap.set('n', 'gr', '<Plug>(coc-references)', { silent = true })
---
--- -- Use K to show documentation in preview window.
--- vim.keymap.set('n', 'K', ':call <SID>show_documentation()<CR>', { silent = true })
---
--- vim.cmd([[
--- function! s:show_documentation()
---   if (index(['vim','help'], &filetype) >= 0)
---     execute 'h '.expand('<cword>')
---   else
---     call CocAction('doHover')
---   endif
--- endfunction
--- ]])
---
--- -- Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
--- -- position. Coc only does snippet and additional edit on confirm.
--- -- <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
--- vim.cmd([[
--- if exists('*complete_info')
---   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
--- else
---   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
--- endif
--- ]])
--- -- Symbol renaming.
--- vim.keymap.set('n', '<leader>rn', '<Plug>(coc-rename)')
---
--- -- Use `leader[` and `leader]` to navigate diagnostics
--- -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
--- vim.keymap.set('n', '<c-k>', '<Plug>(coc-diagnostic-prev)')
--- vim.keymap.set('n', '<c-j>', '<Plug>(coc-diagnostic-next)')
-
--- -- Remap keys for applying codeAction to the current buffer.
--- vim.keymap.set('n', '<leader>ac', '<Plug>(coc-codeaction)')
--- -- Apply AutoFix to problem on the current line.
--- vim.keymap.set('n', '<leader>qf', '<Plug>(coc-fix-current)')
-
--- Go
--- vim.cmd("autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')")
---
--- =========== END OF COC Config (Deprecated - using LSP now) ===========
 
 -- Completion
 -- Better display for messages
