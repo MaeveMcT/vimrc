@@ -5,8 +5,6 @@ return {
   { "machakann/vim-highlightedyank" },
   { "tpope/vim-surround" },
   { "tpope/vim-repeat" },
-  { "tpope/vim-commentary" },
-  { "tomtom/tcomment_vim" },
   { "Raimondi/delimitMate" },
   { "vim-scripts/ZoomWin" },
 
