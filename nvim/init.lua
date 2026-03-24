@@ -38,8 +38,6 @@ vim.opt.relativenumber = true
 vim.opt.undodir = os.getenv("HOME") .. "/.vimdid"
 vim.opt.undofile = true
 
--- color desert
-
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 

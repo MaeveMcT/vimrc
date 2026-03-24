@@ -1,6 +1,4 @@
 local fzf = require("fzf-lua")
-require('go').setup()
-
 -- Gutter space so diagnostics don't cause layout shifts
 vim.opt.signcolumn = 'yes'
 

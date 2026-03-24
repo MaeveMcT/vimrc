@@ -6,7 +6,7 @@ return {
   { "tpope/vim-surround" },
   { "tpope/vim-repeat" },
   { "Raimondi/delimitMate" },
-  { "vim-scripts/ZoomWin" },
+
 
   -- Git
   { "tpope/vim-fugitive" },
@@ -29,24 +29,13 @@ return {
   { "junegunn/fzf.vim" },
   { "ibhagwan/fzf-lua", branch = "main" },
 
-  -- Themes
-  { "morhetz/gruvbox" },
   { "catppuccin/nvim", name = "catppuccin" },
 
   -- Language support
   { "tpope/vim-rails" },
   { "tpope/vim-bundler" },
   { "vim-ruby/vim-ruby" },
-  { "tweekmonster/gofmt.vim" },
-  {
-    "ray-x/go.nvim",
-    dependencies = { "ray-x/guihua.lua" }, -- recommended by go.nvim
-    build = ':lua require("go.install").update_all_sync()',
-    ft = { "go", "gomod", "gowork", "gotmpl" },
-  },
-  { "leafOfTree/vim-svelte-plugin" },
   { "rust-lang/rust.vim" },
-  { "octol/vim-cpp-enhanced-highlight" },
 
   -- Treesitter
   {
@@ -55,7 +44,7 @@ return {
     build = ":TSUpdate",
   },
 
-  -- LSP (lsp-zero removed per your 0.11 migration)
+  -- LSP
   { "neovim/nvim-lspconfig" },
   {
     "williamboman/mason.nvim",
