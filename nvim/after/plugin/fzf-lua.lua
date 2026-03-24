@@ -23,5 +23,3 @@ fzf.setup {
 		},
 	},
 }
-
--- TODO(reece): Make it look like the fzf we config in vimrc
