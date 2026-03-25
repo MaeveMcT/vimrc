@@ -14,7 +14,8 @@ return {
 
   -- File navigation
   { "airblade/vim-rooter" },
-  { "scrooloose/nerdtree" },
+  { "nvim-tree/nvim-tree.lua"},
+  { "nvim-tree/nvim-web-devicons" },
   { "majutsushi/tagbar" },
   {
     "ThePrimeagen/harpoon",

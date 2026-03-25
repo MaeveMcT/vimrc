@@ -3,6 +3,10 @@ vim.g.mapleader = " "
 
 require("config.lazy")
 
+-- nvim-tree recommends we disable netrw as soon as possible in init
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.cmd.colorscheme("catppuccin") -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 vim.opt.compatible = false
@@ -76,10 +80,6 @@ vim.cmd('filetype off')
 -- vim.opt.rtp:prepend("~/.vim/bundle/Vundle.vim")
 
 vim.cmd('filetype plugin indent on')
-
--- NERDTree
-vim.g.NERDTreeWinPos = 'right'
-vim.keymap.set('n', '<F5>', ':NERDTreeToggle<CR>')
 
 -- FZF
 vim.env.FZF_DEFAULT_COMMAND = 'rg --files --hidden'
