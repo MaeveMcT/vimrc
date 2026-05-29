@@ -61,7 +61,7 @@ require('mason-lspconfig').setup({
     'gopls',
     'bashls',
     'ruff',
-    'pyright'
+    'pyright',
   },
   -- This handler auto-calls vim.lsp.enable() for each installed server
   handlers = {
@@ -70,6 +70,12 @@ require('mason-lspconfig').setup({
     end,
   },
 })
+
+-- Use rbenv-managed ruby-lsp (not Mason's) so the Ruby version matches the project
+vim.lsp.config("ruby_lsp", {
+  cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
+})
+vim.lsp.enable("ruby_lsp")
 
 vim.lsp.config("rust_analyzer", {
   settings = {

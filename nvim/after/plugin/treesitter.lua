@@ -3,7 +3,7 @@ local ts = require('nvim-treesitter')
 -- 1. Install all your parsers (replaces ensure_installed)
 local parsers = {
   "c", "lua", "vim", "vimdoc", "query",
-  "javascript", "typescript", "rust", "ruby", "go", "gotmpl", "python"
+  "javascript", "typescript", "rust", "ruby", "go", "gotmpl", "python", "ruby_lsp"
 }
 
 for _, parser in ipairs(parsers) do
