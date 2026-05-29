@@ -73,7 +73,7 @@ require('mason-lspconfig').setup({
 
 -- Use rbenv-managed ruby-lsp (not Mason's) so the Ruby version matches the project
 vim.lsp.config("ruby_lsp", {
-  cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
+  cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp"), "--use-launcher" },
 })
 vim.lsp.enable("ruby_lsp")
 
